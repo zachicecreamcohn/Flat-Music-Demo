@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="embed-container"></div>
+<script src="https://prod.flat-cdn.com/embed-js/v2.3.0/embed.min.js"></script>
+<script>
+    var container = document.getElementById('embed-container');
+    var embed = new Flat.Embed(container, {
+        embedParams: {
+            appId: '6624a2445db183f4c77eeda0', // You will need to change this to your own App ID (set on Flat's website)
+            controlsPosition: 'bottom',
+        },
+    });
+
+    // Loading any MXL file here, for example a file from a public Flat score
+    fetch('BeetAnGeSample.mxl')
+        .then(function (response) {
+            return response.arrayBuffer();
+        })
+        .then(function (mxl) {
+            // Got the compressed score as an `ArrayBuffer`, load it in the embed
+            return embed.loadMusicXML(mxl);
+        })
+        .then(function () {
+            // Score loaded in the embed
+        })
+        .catch(function (error) {
+            // Unable to load the score
+        });
+
+</script>
+</body>
+</html>
